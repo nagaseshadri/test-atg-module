@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+ATG-Product-Full: Versioned
+ATG-Required: TestATGModule.Common
+ATG-Class-Path: build/libs/Versioned.jar 
+ATG-Client-Class-Path: build/libs/Versioned.jar 
+ATG-Client-Update-File: true
+

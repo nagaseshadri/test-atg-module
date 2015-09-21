@@ -1,0 +1,3 @@
+project.ext.libraries = [
+    oraclecommerce: files('lib/GradlePlugin-0.0.1.jar')
+]

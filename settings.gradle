@@ -1,0 +1,4 @@
+rootProject.name = 'TestATGModule'
+include 'Common'
+include 'Storefront'
+include 'Versioned'

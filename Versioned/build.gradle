@@ -1,0 +1,7 @@
+config {
+    atgRequired = 'TestATGModule.Common'
+}
+
+//dependencies {
+//    copyToLib files('/home/vagrant/workspace/TestATGModule/lib/GradlePlugin-0.0.1.jar')
+//}

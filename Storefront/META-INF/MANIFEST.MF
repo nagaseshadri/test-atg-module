@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+ATG-Product-Full: Storefront
+ATG-Required: TestATGModule.Common
+ATG-Class-Path: build/libs/Storefront.jar 
+ATG-Client-Class-Path: build/libs/Storefront.jar 
+ATG-Client-Update-File: true
+

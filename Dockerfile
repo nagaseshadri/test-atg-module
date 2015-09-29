@@ -1,4 +1,4 @@
-FROM asnagaraj/oracle-atg-11.1
+FROM asnagaraj/oracle-atg-11.1:v2
 
 MAINTAINER Naga Seshadri "https://github.com/nagaseshadri"
 

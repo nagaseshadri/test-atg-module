@@ -1,10 +1,15 @@
+plugins {
+    id "org.wedoit4u.gradle.plugins.OracleCommercePlugin" version "0.0.2"
+  }
+
 apply from: 'libraries.gradle'
 
-buildscript {
-    dependencies {
-        classpath files('lib/GradlePlugin-0.0.1.jar')
-    }
-}
+//buildscript {
+//    dependencies {
+//        classpath files('lib/GradlePlugin-0.0.1.jar')
+//    }
+//}
+
 apply plugin: 'eclipse'
 apply plugin: org.wedoit4u.gradle.plugins.OracleCommercePlugin
 
@@ -20,34 +25,3 @@ config {
     atgRequired = 'DCS'
 }
 
-unlinkAtgModule()
-linkAtgModule()
-
-def unlinkAtgModule() {
-    if(file("$atgHome/../TestATGModule").exists()) {
-        println ("Unlinking TestATGModule Module ")
-        new ByteArrayOutputStream().withStream { os ->
-            exec{
-                commandLine 'unlink'
-                args = ['TestATGModule']
-                workingDir "$atgHome/.."
-                standardOutput = os
-            }
-            println os.toString()
-        }
-    }
-}
-
-def linkAtgModule() {
-    println ("Linking TestATGModule Module " + projectDir)
-    new ByteArrayOutputStream().withStream { os ->
-        exec{
-            commandLine 'ln'
-            args = ["-s", projectDir, "TestATGModule"]
-            workingDir "$atgHome/.."
-            standardOutput = os
-        }
-
-        println os.toString()
-    }
-}

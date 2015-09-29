@@ -12,4 +12,4 @@ install:
   - docker run asnagaraj/oracle-atg-11.1:v4 /bin/bash -c ". ~/.bash_profile; git clone https://github.com/nagaseshadri/test-atg-module /root/test-atg-module; cd /root/test-atg-module; gradle --stacktrace gATGM"
 
 script:
-  - gradle --stacktrace build
+  - gradle --stacktrace gATGM

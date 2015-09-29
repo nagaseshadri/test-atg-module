@@ -6,9 +6,7 @@ services:
   - docker
 
 before_install:
-- docker pull asnagaraj/oracle-atg-11.1:v2
-- docker run -d asnagaraj/oracle-atg-11.1:v2 /bin/bash -c "git clone https://github.com/nagaseshadri/test-atg-module /root/test-atg-module; cd /root/test-atg-module; gradle gATGM"
-- docker ps -a
+  - docker pull asnagaraj/oracle-atg-11.1:v2
 
 script:
-- gradle gATGM 
+  - docker run asnagaraj/oracle-atg-11.1:v2 /bin/bash -c "git clone https://github.com/nagaseshadri/test-atg-module /root/test-atg-module; cd /root/test-atg-module; gradle gATGM"

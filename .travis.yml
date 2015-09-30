@@ -3,8 +3,9 @@ language: bash
 sudo: required
 
 before_script:
-- "mysql -e 'create database node_mysql;'"
+- "mysql -e 'create database atg_core;'"
+- "mysql -e 'create database atg_ca;'"
 
 script:
-- "mysql -e 'USE node_mysql;'"
+- "mysql -e 'show databases;'"
 

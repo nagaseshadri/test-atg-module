@@ -1,13 +1,14 @@
-language: bash
-
 sudo: required
 
-services:
-- docker
+language: bash
+
+install:
+- docker pull asnagaraj/oracle-atg-11.1:v4
 
 before_script:
 - "mysql -e 'create database atg_core;'"
 - "mysql -e 'create database atg_ca;'"
 
 script:
-- "mysql -e 'show databases;'"
+- docker run --net="host" -v $TRAVIS_BUILD_DIR:/workspace/test-atg-module asnagaraj/oracle-atg-11.1:v4 /bin/bash -c ". ~/.bash_profile; cd /workspace/test-atg-module;  gradle --stacktrace gATGM; telnet localhost 3306; telnet 127.0.0.1 3306"
+

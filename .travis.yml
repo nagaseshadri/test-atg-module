@@ -13,4 +13,5 @@ before_script:
 
 script:
 #  - docker run -v $TRAVIS_BUILD_DIR:/workspace/test-atg-module asnagaraj/oracle-atg-11.1:v4 /bin/bash -c ". ~/.bash_profile; cd /workspace/test-atg-module;  gradle --stacktrace gATGM"
- - mysql --host=127.0.0.1 --user=root --password=
+ - ps -ef|grep mysql
+ - mysql -h 127.0.0.1 -u travis

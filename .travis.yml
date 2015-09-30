@@ -1,7 +1,10 @@
 language: bash
 
 sudo: required
-  
+
+services:
+- docker
+
 before_script:
 - "mysql -e 'create database atg_core;'"
 - "mysql -e 'create database atg_ca;'"

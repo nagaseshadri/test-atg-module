@@ -6,8 +6,8 @@ services:
   - docker
 
 before_install:
-  - mysql -e 'create database IF NOT EXISTS atg_core;'
-  - mysql -e 'create database IF NOT EXISTS atg_ca;'
+  - mysql -e 'create database IF NOT EXISTS atg_core;' -uroot;
+  - mysql -e 'create database IF NOT EXISTS atg_ca;' -uroot;
 
 install:
   - docker pull asnagaraj/oracle-atg-11.1:v4

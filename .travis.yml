@@ -1,9 +1,14 @@
-sudo: required
+udo: required
 
 language: bash
 
 services:
   - docker
+  - mysql
+
+before_install:
+  - mysql -e 'create database atg_core;'
+  - mysql -e 'create database atg_ca;'
 
 install:
   - docker pull asnagaraj/oracle-atg-11.1:v4

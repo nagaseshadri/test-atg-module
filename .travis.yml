@@ -9,16 +9,8 @@ install:
   - docker pull asnagaraj/oracle-atg-11.1:v4
 
 before_script:
-  - "sudo mysql -e 'create database node_mysql;'"
+  - mysql --host=localhost --user=root --password=
 
 script:
   - docker run -v $TRAVIS_BUILD_DIR:/workspace/test-atg-module asnagaraj/oracle-atg-11.1:v4 /bin/bash -c ". ~/.bash_profile; cd /workspace/test-atg-module;  gradle --stacktrace gATGM"
 
-env:
-  - MYSQL_HOST=localhost MYSQL_DATABASE=node_mysql MYSQL_USER=root MYSQL_PASSWORD=
-
-mysql:
-  adapter: mysql2
-  username: root
-  encoding: utf8
-  database: node_mysql

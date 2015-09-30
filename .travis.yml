@@ -1,19 +1,32 @@
-sudo: required
+language: node_js
+node_js:
+  - '0.6'
+  - '0.8'
+  - '0.10'
+  - '0.12'
+  - '1.0'
+  - '1.8'
+  - '2.0'
+  - '2.5'
+  - '3.0'
 
-language: bash
-
-services:
-  - docker
-
-install:
-#  - docker pull asnagaraj/oracle-atg-11.1:v4
+sudo: false
 
 before_script:
-#  - mysql --host=localhost --user=root --password=
+- "mysql -e 'create database node_mysql;'"
 
 script:
-#  - docker run -v $TRAVIS_BUILD_DIR:/workspace/test-atg-module asnagaraj/oracle-atg-11.1:v4 /bin/bash -c ". ~/.bash_profile; cd /workspace/test-atg-module;  gradle --stacktrace gATGM"
- - sudo ps -ef|grep mysql
- - mysql -h localhost -u travis
- - mysql -h 127.0.0.1 -u travis
+  - "test $TRAVIS_NODE_VERSION != '0.6' || npm test"
+  - "test $TRAVIS_NODE_VERSION  = '0.6' || npm run-script test-ci"
 
+after_script:
+  - "test $TRAVIS_NODE_VERSION = '0.6' || npm install coveralls@2 && cat ./coverage/lcov.info | coveralls"
+
+env:
+  - MYSQL_HOST=localhost MYSQL_DATABASE=node_mysql MYSQL_USER=root MYSQL_PASSWORD=
+
+mysql:
+  adapter: mysql2
+  username: root
+  encoding: utf8
+  database: node_mysql

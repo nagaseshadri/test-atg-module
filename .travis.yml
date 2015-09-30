@@ -5,12 +5,13 @@ language: bash
 services:
   - docker
 
-before_install:
-  - mysql -e 'create database IF NOT EXISTS atg_core;' -uroot;
-  - mysql -e 'create database IF NOT EXISTS atg_ca;' -uroot;
-
 install:
   - docker pull asnagaraj/oracle-atg-11.1:v4
 
+before_script:
+  - echo "USE mysql;\nUPDATE user SET password=PASSWORD('password') WHERE user='root';\nFLUSH PRIVILEGES;\n" | mysql -u root
+  - mysql -e 'create database IF NOT EXISTS atg_core;' -uroot;
+  - mysql -e 'create database IF NOT EXISTS atg_ca;' -uroot;
+  
 script:
   - docker run -v $TRAVIS_BUILD_DIR:/workspace/test-atg-module asnagaraj/oracle-atg-11.1:v4 /bin/bash -c ". ~/.bash_profile; cd /workspace/test-atg-module;  gradle --stacktrace gATGM"

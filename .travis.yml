@@ -5,12 +5,12 @@ language: java
 services:
   - docker
 
-before_install:
+install:
   - docker pull asnagaraj/oracle-atg-11.1:v4
   
 install:
-  - docker run -v $(pwd)/atg:/opt/oracle/product/atgasnagaraj/oracle-atg-11.1:v4 /bin/bash -c ". ~/.bash_profile; git clone https://github.com/nagaseshadri/test-atg-module /root/test-atg-module; cd /root/test-atg-module; gradle --stacktrace gATGM"
+  - docker run -v $TRAVIS_BUILD_DIR/atg:/opt/oracle/product/atg asnagaraj/oracle-atg-11.1:v4 /bin/bash -c ". ~/.bash_profile; git clone https://github.com/nagaseshadri/test-atg-module /root/test-atg-module; cd /root/test-atg-module; gradle --stacktrace gATGM"
 
 script:
-  - ls -l $(pwd)/atg 
+  - ls -l $TRAVIS_BUILD_DIR/atg 
   - gradle --stacktrace gATGM
